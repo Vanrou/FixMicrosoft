@@ -31,6 +31,7 @@ echo Found VS Code at: %vscode_path%
     echo Windows Registry Editor Version 5.00
     echo;
     echo [-HKEY_CLASSES_ROOT\Directory\shell\OpenWithCode]
+    echo [-HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWithCode]
     echo [-HKEY_CLASSES_ROOT\*\shell\OpenWithCode]
     echo;
     echo [HKEY_CLASSES_ROOT\Directory\shell\OpenWithCode]
@@ -39,6 +40,13 @@ echo Found VS Code at: %vscode_path%
     echo;
     echo [HKEY_CLASSES_ROOT\Directory\shell\OpenWithCode\command]
     echo @="\"%vscode_path:\=\\%\" \"%%1\""
+    echo;
+    echo [HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWithCode]
+    echo @="Open with Code"
+    echo "Icon"="\"%vscode_path:\=\\%\",0"
+    echo;
+    echo [HKEY_CLASSES_ROOT\Directory\Background\shell\OpenWithCode\command]
+    echo @="\"%vscode_path:\=\\%\" \"%%V\""
     echo;
     echo [HKEY_CLASSES_ROOT\*\shell\OpenWithCode]
     echo @="Open with Code"
@@ -56,4 +64,5 @@ taskkill /f /im explorer.exe >nul
 start explorer.exe
 
 echo Success! "Open with Code" added to context menu.
+
 pause
